@@ -8,15 +8,7 @@
 </div>
 </template>
 
-<style lang="scss" scoped>
-.view {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-}
-
+<style lang="postcss">
 .page-content {
   position: relative;
   height: 100%;

@@ -1,0 +1,80 @@
+:root {
+  --borderColor: #ccc;
+}
+
+[class*="f-bd"] {
+  position: relative;
+  &:after {
+    position: absolute;
+    z-index: 2;
+    content: "";
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    transform-origin: top left;
+    border: 0 solid var(--borderColor);
+  }
+}
+
+.f-bd-top {
+  &:after {
+    border-top-width: 1px; /*no*/
+  }
+}
+.f-bd-btm {
+  &:after {
+    border-bottom-width: 1px; /*no*/
+  }
+}
+.f-bd-tb {
+  &:after {
+    border-width: 1px 0; /*no*/
+  }
+}
+.f-bd-left {
+  &:after {
+    border-left-width: 1px; /*no*/
+  }
+}
+.f-bd-right {
+  &:after {
+    border-right-width: 1px; /*no*/
+  }
+}
+.f-bd-lr {
+  &:after {
+    border-width: 0 1px; /*no*/
+  }
+}
+.f-bd-full {
+  &:after {
+    border-width: 1px; /*no*/
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 1.5) {
+  [class*="f-bd"]:after {
+    width: 150%;
+    height: 150%;
+    transform: scale(0.666666);
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+  [class*="f-bd"]:after {
+    width: 200%;
+    height: 200%;
+    transform: scale(0.5);
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 3) {
+  [class*="f-bd"]:after {
+    width: 300%;
+    height: 300%;
+    transform: scale(0.333333);
+  }
+}

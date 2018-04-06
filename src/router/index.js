@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import events from '@/events'
+import { _scrollTo, _saveScrollTop } from '@/util'
 
 Vue.use(Router)
 
@@ -58,6 +59,20 @@ router.beforeEach((to, from, next) => {
   // 页面方向切换更新
   events.$emit('UPDATE_DIRECTION', to, from)
   next()
+})
+
+Vue.mixin({
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      // 进入当前页面的路由时，滚动到之前的位置
+      _scrollTo(vm, to)
+    })
+  },
+  beforeRouteLeave(to, from, next) {
+    // 离开当前页面的路由时，保存页面滚动位置
+    _saveScrollTop(this, from)
+    next()
+  }
 })
 
 export default router

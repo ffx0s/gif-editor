@@ -10,7 +10,7 @@
 </app-view>
 </template>
 
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 .page2 {
   display: flex;
   align-items: center;

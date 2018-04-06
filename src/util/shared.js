@@ -78,6 +78,8 @@ export function addListener(element, type, fn, options) {
   )
 }
 
+export let viewHeight = document.documentElement.clientHeight
+
 export let viewWidth = (() => {
   let timer = null
 
@@ -85,6 +87,7 @@ export let viewWidth = (() => {
     clearTimeout(timer)
     timer = setTimeout(() => {
       viewWidth = document.documentElement.clientWidth
+      viewHeight = document.documentElement.clientHeight
     }, 300)
   })
 

@@ -4,7 +4,7 @@ const path = require('path')
 
 const px2remOptions = {
   remUni: 75,
-  remPrecision: 8
+  remPrecision: 4
 }
 
 module.exports = {
@@ -23,24 +23,21 @@ module.exports = {
       .use('jade')
       .loader('jade-loader')
 
-    // scss px2rem
-    // config.module
-    //   .rule('scss')
-    //   .test(/\.scss$/)
-    //   .use('scss')
-    //   .loader('px2rem-loader')
-    //   .options(px2remOptions)
-
-    // *.vue px2rem
     config.module
       .rule('vue')
       .use('vue-loader')
       .tap(options => {
-        options.postcss = [require('postcss-px2rem')(px2remOptions)]
-        // options.loaders.scss.push({
-        //   loader: 'px2rem-loader',
-        //   options: px2remOptions
-        // })
+        options.postcss = [
+          require('postcss-import')(),
+          require('postcss-cssnext')({
+            autoprefixer: {
+              browsers: ['last 2 versions', 'Android >= 4.1']
+            }
+          }),
+          require('postcss-write-svg')(),
+          require('postcss-px2rem')(px2remOptions)
+        ]
+
         return options
       })
 
