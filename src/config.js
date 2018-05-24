@@ -1,5 +1,7 @@
 /* eslint-env node */
 
-export const isDev = process.env.NODE_ENV === 'development'
-
-export const isProduction = process.env.NODE_ENV === 'production'
+module.exports = {
+  isDev: process.env.NODE_ENV === 'development',
+  isProduction: process.env.NODE_ENV === 'production',
+  assetsDomain: ''
+}

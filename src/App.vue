@@ -19,7 +19,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { fixedWXScroll } from '@/util'
+import { fixedWXScroll, disabledScale } from '@/utils/page'
 
 export default {
   name: 'App',
@@ -36,6 +36,8 @@ export default {
   mounted() {
     // 解决微信上下滑出现黑底背景问题
     fixedWXScroll(this.$el, '.page-content')
+    // 禁止移动端双击缩放
+    disabledScale()
   }
 }
 </script>
@@ -58,9 +60,6 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  & a {
-    color: white;
-  }
 }
 
 .page-view {
@@ -69,6 +68,7 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
+  background-color: white;
 }
 
 .page-out-enter-active,
@@ -140,6 +140,15 @@ body {
     opacity: 0;
     transition: opacity var(--duration);
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
 

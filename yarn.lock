@@ -828,10 +828,6 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "http://r.cnpmjs.org/amdefine/download/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-amfe-flexible@^2.2.1:
-  version "2.2.1"
-  resolved "http://r.cnpmjs.org/amfe-flexible/download/amfe-flexible-2.2.1.tgz#353f00289e4d38ca88a21eb3854420308af0b559"
-
 ansi-escapes@^3.0.0:
   version "3.1.0"
   resolved "http://r.cnpmjs.org/ansi-escapes/download/ansi-escapes-3.1.0.tgz#f73207bb81207d75fd6c83f125af26eea378ca30"
@@ -3065,6 +3061,10 @@ getpass@^0.1.1:
   resolved "http://r.cnpmjs.org/getpass/download/getpass-0.1.7.tgz#5eff8e3e684d569ae4cb2b1282604e8ba62149fa"
   dependencies:
     assert-plus "^1.0.0"
+
+gif.js@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/gif.js/-/gif.js-0.2.0.tgz#615e6e3788850cd3a20c85fe9f09539e784903e8"
 
 glob-base@^0.3.0:
   version "0.3.0"
@@ -5305,6 +5305,12 @@ postcss-ordered-values@^2.1.0:
   dependencies:
     postcss "^5.0.4"
     postcss-value-parser "^3.0.1"
+
+postcss-prepend-imports@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/postcss-prepend-imports/-/postcss-prepend-imports-1.0.1.tgz#bf458188085c33ff36995cc96c91688d64988e28"
+  dependencies:
+    postcss "^5.0.0"
 
 postcss-pseudo-class-any-link@^4.0.0:
   version "4.0.0"

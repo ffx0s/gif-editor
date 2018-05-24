@@ -131,9 +131,11 @@ select,
 textarea {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent !important;
+  outline: none;
 }
 
 html {
+  font-size: 16px; /*no*/
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
 }
@@ -146,4 +148,16 @@ label {
 
 input:focus {
   outline: 0;
+}
+
+@media screen and (min-width: 414px) and (max-width: 767px) {
+  html {
+    font-size: 16.96px; /*no*/
+  }
+}
+
+@media screen and (min-width: 768px) {
+  html {
+    font-size: 20px; /*no*/
+  }
 }

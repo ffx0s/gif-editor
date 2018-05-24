@@ -1,47 +1,40 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import events from '@/events'
-import { _scrollTo, _saveScrollTop } from '@/util'
+import { loading, _scrollTo, _saveScrollTop } from '@/utils/page'
 
 Vue.use(Router)
 
-const Page1 = loadRouteAsync('Page1')
-const Page2 = loadRouteAsync('Page2')
-const Page3 = loadRouteAsync('Page3')
-const PageNotFound = loadRouteAsync('PageNotFound')
-
-// 异步加载页面
-function loadRouteAsync(name) {
+function loadRoute(name) {
   return function() {
     return import('../views/' + name)
   }
 }
 
-// 路由文件
 const routes = [
   {
     path: '/',
-    name: 'page1',
-    meta: { keepAlive: true, title: 'page1' },
-    component: Page1
+    name: 'home',
+    meta: { keepAlive: true, title: '上传GIF' },
+    component: loadRoute('Home')
   },
   {
-    path: '/page2',
-    name: 'page2',
-    meta: { keepAlive: true, title: 'page2' },
-    component: Page2
+    path: '/gallery',
+    name: 'gallery',
+    meta: { keepAlive: true, title: 'gallery' },
+    component: loadRoute('Gallery')
   },
   {
-    path: '/page3',
-    name: 'page3',
-    meta: { keepAlive: true, title: 'page3' },
-    component: Page3
+    path: '/editor',
+    name: 'editor',
+    meta: { keepAlive: true, title: 'GIF编辑器' },
+    component: loadRoute('Editor')
   },
   {
     path: '/404',
     name: '404',
     meta: { keepAlive: true, title: '404' },
-    component: PageNotFound
+    component: loadRoute('PageNotFound')
   },
   {
     path: '*',
@@ -51,14 +44,23 @@ const routes = [
 
 const router = new Router({
   routes,
-  mode: 'history',
+  // mode: 'history',
   linkActiveClass: 'active'
 })
 
 router.beforeEach((to, from, next) => {
+  loading({ show: true })
+
   // 页面方向切换更新
-  events.$emit('UPDATE_DIRECTION', to, from)
+  events.emit('UPDATE_DIRECTION', to, from)
   next()
+})
+
+router.afterEach(to => {
+  loading({ show: false })
+
+  // 页面统计
+  events.emit('STATS', to)
 })
 
 Vue.mixin({
