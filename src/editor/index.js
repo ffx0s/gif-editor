@@ -50,8 +50,7 @@ export default class Editor {
 
     if (isProduction) {
       // options.workerScript = assetsDomain + 'gif.worker.js'
-      options.workerScript =
-        'https://gif.webfed.cn/gif.worker.js'
+      options.workerScript = 'https://gif.webfed.cn/gif.worker.js'
     }
     if (!that.builder) {
       that.builder = new Builder(options)
