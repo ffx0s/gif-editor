@@ -1,2 +1,0 @@
-webpackJsonp([4],{fvYi:function(e,l,t){"use strict";Object.defineProperty(l,"__esModule",{value:!0});var n=function(){var e=this,l=e.$createElement,t=e._self._c||l;return t("app-view",[t("div",{staticClass:"gallery"})])},a=[],u=t("XyMi"),i=null,r=!1,s=null,c=null,f=null,o=Object(u["a"])(i,n,a,r,s,c,f);l["default"]=o.exports}});
-//# sourceMappingURL=4.f16980ec.js.map
