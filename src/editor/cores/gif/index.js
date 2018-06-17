@@ -89,7 +89,6 @@ export default class Gif extends EventEmitter {
     this.lastDisposalMethod = this.disposalMethod
     this.disposalMethod = null
     this.frame = null
-    this.lastImg = null
   }
 
   reset() {
@@ -162,7 +161,7 @@ export default class Gif extends EventEmitter {
         this.disposalRestoreFromIdx = currIdx - 1
       }
 
-      if (this.lastDisposalMethod === 2 && this.lastImg) {
+      if (this.lastDisposalMethod === 2) {
         // Restore to background color
         // Browser implementations historically restore to transparent; we do the same.
         // http://www.wizards-toolkit.org/discourse-server/viewtopic.php?f=1&t=21172#p86079
@@ -184,16 +183,15 @@ export default class Gif extends EventEmitter {
       img.width,
       img.height
     )
-
     // apply color table colors
     img.pixels.forEach((pixel, i) => {
       // imgData.data === [R,G,B,A,R,G,B,A,...]
-      if (pixel !== this.transparency) {
-        imgData.data[i * 4 + 0] = ct[pixel][0]
-        imgData.data[i * 4 + 1] = ct[pixel][1]
-        imgData.data[i * 4 + 2] = ct[pixel][2]
-        imgData.data[i * 4 + 3] = 255 // Opaque.
-      }
+      // if (pixel !== this.transparency) { // 放弃透明
+      imgData.data[i * 4 + 0] = ct[pixel][0]
+      imgData.data[i * 4 + 1] = ct[pixel][1]
+      imgData.data[i * 4 + 2] = ct[pixel][2]
+      imgData.data[i * 4 + 3] = 255 // Opaque.
+      // }
     })
 
     this.frame.putImageData(imgData, img.leftPos, img.topPos)
@@ -213,6 +211,7 @@ export default class Gif extends EventEmitter {
     this.pushFrame()
     this.clear()
     this.header = null
+    this.lastImg = null
     this.parser.reset()
   }
 
