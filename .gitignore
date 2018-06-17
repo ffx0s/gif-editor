@@ -18,5 +18,5 @@ yarn-error.log*
 *.njsproj
 *.sln
 
-conf.json
+scripts/*
 .qshell
