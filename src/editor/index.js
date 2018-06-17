@@ -76,12 +76,15 @@ export default class Editor {
     for (let i = 0; i < framesLength; i++) {
       ctx.clearRect(0, 0, width, height)
       ctx.putImageData(that.gif.frames[i].data, 0, 0)
-
+      ctx.globalCompositeOperation = 'source-over'
       that.layer.eachElements(element => {
         if (element.$type === 'global' || element.$frameIndex === i) {
           element.draw(ctx)
         }
       })
+      ctx.globalCompositeOperation = 'destination-over'
+      ctx.fillStyle = '#fff'
+      ctx.fillRect(0, 0, width, height)
 
       const imageData = ctx.getImageData(0, 0, width, height)
 
