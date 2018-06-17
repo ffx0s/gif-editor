@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
-    "release": "yarn build && qshell qupload 10 ./conf.json",
+    "release": "./scripts/release.sh",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -30,11 +30,20 @@
     "vue-template-compiler": "^2.5.13"
   },
   "babel": {
-    "presets": ["@vue/app"]
+    "presets": [
+      "@vue/app"
+    ]
   },
   "eslintConfig": {
     "root": true,
-    "extends": ["plugin:vue/essential", "eslint:recommended"]
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ]
   },
-  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"]
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }

@@ -51,7 +51,7 @@ export default class Editor {
     if (isProduction) {
       // options.workerScript = assetsDomain + 'gif.worker.js'
       options.workerScript =
-        'http://7jptea.com1.z0.glb.clouddn.com/gif.worker.js'
+        'https://gif.webfed.cn/gif.worker.js'
     }
     if (!that.builder) {
       that.builder = new Builder(options)
