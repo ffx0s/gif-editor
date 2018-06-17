@@ -186,12 +186,12 @@ export default class Gif extends EventEmitter {
     // apply color table colors
     img.pixels.forEach((pixel, i) => {
       // imgData.data === [R,G,B,A,R,G,B,A,...]
-      // if (pixel !== this.transparency) { // 放弃透明
-      imgData.data[i * 4 + 0] = ct[pixel][0]
-      imgData.data[i * 4 + 1] = ct[pixel][1]
-      imgData.data[i * 4 + 2] = ct[pixel][2]
-      imgData.data[i * 4 + 3] = 255 // Opaque.
-      // }
+      if (pixel !== this.transparency) {
+        imgData.data[i * 4 + 0] = ct[pixel][0]
+        imgData.data[i * 4 + 1] = ct[pixel][1]
+        imgData.data[i * 4 + 2] = ct[pixel][2]
+        imgData.data[i * 4 + 3] = 255 // Opaque.
+      }
     })
 
     this.frame.putImageData(imgData, img.leftPos, img.topPos)
@@ -219,7 +219,8 @@ export default class Gif extends EventEmitter {
     const offset = this.frameOffsets[index]
 
     this.tmpCtx.putImageData(this.frames[index].data, offset.x, offset.y)
-    this.ctx.clearRect(0, 0, this.tmpCanvas.width, this.tmpCanvas.height)
+    this.ctx.fillStyle = '#fff'
+    this.ctx.fillRect(0, 0, this.tmpCanvas.width, this.tmpCanvas.height)
     this.ctx.drawImage(this.tmpCanvas, 0, 0)
   }
 
