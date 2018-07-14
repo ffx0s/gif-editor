@@ -2,6 +2,8 @@
 
 const path = require('path')
 const { assetsDomain } = require('./src/config')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin
 
 const px2remOptions = {
   remUnit: 16,
@@ -35,7 +37,14 @@ module.exports = {
     ]
   },
 
-  configureWebpack: {},
+  configureWebpack: config => {
+    if (process.env.NODE_ENV === 'production') {
+      config.plugins.push(new BundleAnalyzerPlugin())
+      // mutate config for production...
+    } else {
+      // mutate for development...
+    }
+  },
 
   css: {
     extract: false

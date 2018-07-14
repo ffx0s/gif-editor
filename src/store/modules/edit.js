@@ -72,17 +72,10 @@ const actions = {
       commit('file', state.file)
       commit('status', 2)
       editor.gif.load(state.file)
-      // editor.gif.load('https://freshdesign.io/img/inspiration/woveC.gif')
-      // editor.gif.load(
-      //   'https://media.giphy.com/media/3o7aCZVImHIHQmPLy0/giphy.gif'
-      // )
-      // 小图
-      // editor.gif.load(
-      //   'https://o818xvhxo.qnssl.com/o_1cbc7bdanf1g1lg916uop4q1gt19.gif'
-      // )
-      // editor.gif.load(
-      //   'https://o818xvhxo.qnssl.com/o_1cc04ds1psg7t0e19kj6ci4qa9.gif'
-      // )
+      // https://freshdesign.io/img/inspiration/woveC.gif
+      // https://media.giphy.com/media/3o7aCZVImHIHQmPLy0/giphy.gif
+      // https://o818xvhxo.qnssl.com/o_1cbc7bdanf1g1lg916uop4q1gt19.gif
+      // https://o818xvhxo.qnssl.com/o_1cc04ds1psg7t0e19kj6ci4qa9.gif
       commit('file', null)
     }
   },
