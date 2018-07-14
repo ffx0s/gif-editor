@@ -1,6 +1,4 @@
 /* eslint-env node */
-require('es6-promise').polyfill() // Fixed Android 4.1
-
 import Vue from 'vue'
 import Vuex from 'vuex'
 // import createLogger from 'vuex/dist/logger'

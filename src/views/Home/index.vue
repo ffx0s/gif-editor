@@ -6,7 +6,7 @@
         上传制作
         <Upload @on-change="onChange"></Upload>
       </button>
-      <!-- <button class="btn-outline-white btn-large btn-block"  @click="$router.push({ name: 'gallery' })">图库浏览</button> -->
+      <button class="btn-outline-white btn-large btn-block"  @click="$router.push({ name: 'gallery' })">图库浏览</button>
     </div>
   </div>
 </app-view>

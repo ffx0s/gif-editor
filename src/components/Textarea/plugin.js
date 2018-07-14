@@ -52,7 +52,5 @@ export default {
         options
       )
     }
-
-    window._Vue = Vue
   }
 }
