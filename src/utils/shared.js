@@ -10,6 +10,8 @@ export const isSupportWebp = (function isSupportWebp() {
   return isSupport
 })()
 
+export const isBase64Image = src => src.indexOf(';base64,') > 0
+
 export const browser = (function browser() {
   const u = navigator.userAgent
 
@@ -105,14 +107,6 @@ export function removeListener(element, type, fn, options) {
   element.removeEventListener(type, fn, options)
 }
 
-export function endcodeJsonStringify(data) {
-  return encodeURIComponent(JSON.stringify(data))
-}
-
-export function toFixed(value, digits) {
-  return +value.toFixed(digits)
-}
-
 /**
  * 是否为数字
  * @param {*} value 值
@@ -178,4 +172,30 @@ export function colorToRGB(color, alpha) {
   } else {
     return `rgba(${r}, ${g}, ${b}, ${a})`
   }
+}
+
+/**
+ * 获取当前元素真实滚动节点
+ * https://github.com/youzan/vant/blob/dev/packages/utils/scroll.js#L5
+ * @param {Element} element 当前节点
+ * @param {Element} rootParent 根节点
+ */
+export function getScrollEventTarget(element, rootParent = window) {
+  let currentNode = element
+  // bugfix, see http://w3help.org/zh-cn/causes/SD9013 and http://stackoverflow.com/questions/17016740/onscroll-function-is-not-working-for-chrome
+  while (
+    currentNode &&
+    currentNode.tagName !== 'HTML' &&
+    currentNode.tagName !== 'BODY' &&
+    currentNode.nodeType === 1 &&
+    currentNode !== rootParent
+  ) {
+    const overflowY = document.defaultView.getComputedStyle(currentNode)
+      .overflowY
+    if (overflowY === 'scroll' || overflowY === 'auto') {
+      return currentNode
+    }
+    currentNode = currentNode.parentNode
+  }
+  return rootParent
 }

@@ -3,11 +3,11 @@
   <div class="absolute item-center">
     <!-- 上传图片 -->
     <div v-show="status === 0 || status === 3 || status === 4">
-      <upload @on-change="$store.dispatch('load')"></upload>
+      <Upload @on-change="$store.dispatch('load')" />
       <i class="iconfont icon-upload"></i>
     </div>
     <!-- 上传、解析进度条 -->
-    <v-progress
+    <VProgress
       style="width: 80%"
       class="load-progress"
       v-show="status === 2"

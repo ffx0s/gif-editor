@@ -1,0 +1,137 @@
+@font-face {
+  font-family: "fontello";
+  src: url("./assets/font/font/fontello.eot?66826397");
+  src: url("./assets/font/font/fontello.eot?66826397#iefix")
+      format("embedded-opentype"),
+    url("./assets/font/font/fontello.woff2?66826397") format("woff2"),
+    url("./assets/font/font/fontello.woff?66826397") format("woff"),
+    url("./assets/font/font/fontello.ttf?66826397") format("truetype"),
+    url("./assets/font/font/fontello.svg?66826397#fontello") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello.svg?66826397#fontello') format('svg');
+  }
+}
+*/
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: 0.2em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: 0.2em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.icon-heart:before {
+  content: "\e800";
+} /* '' */
+.icon-search:before {
+  content: "\e801";
+} /* '' */
+.icon-play:before {
+  content: "\e802";
+} /* '' */
+.icon-new:before {
+  content: "\e803";
+} /* '' */
+.icon-masaike:before {
+  content: "\e804";
+} /* '' */
+.icon-ico-typelayer-ZIpQl:before {
+  content: "\e805";
+} /* '' */
+.icon-redo:before {
+  content: "\e806";
+} /* '' */
+.icon-x:before {
+  content: "\e807";
+} /* '' */
+.icon-delete:before {
+  content: "\e808";
+} /* '' */
+.icon-point:before {
+  content: "\e809";
+} /* '' */
+.icon-pause:before {
+  content: "\e80a";
+} /* '' */
+.icon-help:before {
+  content: "\e80b";
+} /* '' */
+.icon-ico-correct:before {
+  content: "\e80c";
+} /* '' */
+.icon-close:before {
+  content: "\e80d";
+} /* '' */
+.icon-upload:before {
+  content: "\e80e";
+} /* '' */
+.icon-color:before {
+  content: "\e80f";
+} /* '' */
+.icon-pa_checked01:before {
+  content: "\e810";
+} /* '' */
+.icon-Zoom:before {
+  content: "\e811";
+} /* '' */
+.icon-eraser:before {
+  content: "\e812";
+} /* '' */
+.icon-upload1:before {
+  content: "\e813";
+} /* '' */
+.icon-download:before {
+  content: "\e814";
+} /* '' */
+.icon-next:before {
+  content: "\e815";
+} /* '' */
+.icon-previous:before {
+  content: "\e816";
+} /* '' */
+.icon-undo:before {
+  content: "\e817";
+} /* '' */
+.icon-pencil:before {
+  content: "\eb89";
+} /* '' */
+.icon-menu:before {
+  content: "\f0c9";
+} /* '' */

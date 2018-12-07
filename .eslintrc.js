@@ -1,7 +1,8 @@
 module.exports = {
   extends: ['eslint:recommended', 'plugin:vue/essential'],
   env: {
-    browser: true
+    browser: true,
+    node: true
   },
   // 解决 import 报错问题
   parserOptions: {

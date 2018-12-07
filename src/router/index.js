@@ -19,12 +19,6 @@ const routes = [
     component: loadRoute('Home')
   },
   {
-    path: '/gallery',
-    name: 'gallery',
-    meta: { keepAlive: true, title: 'gallery' },
-    component: loadRoute('Gallery')
-  },
-  {
     path: '/editor',
     name: 'editor',
     meta: { keepAlive: true, title: 'GIF编辑器' },

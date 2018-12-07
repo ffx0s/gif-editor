@@ -1,5 +1,5 @@
 <template>
-<editor-tool-layout
+<EditorToolLayout
   :name="'pencil'"
   :enabledRecord="true"
   @on-show="onShow"
@@ -8,7 +8,7 @@
   @on-global-frame="globalFrame = !globalFrame"
   @click.native="showMenu = false"
 >
-  <color-picker
+  <ColorPicker
     :colorValue="colorValue"
     :alphaValue="alphaValue"
     @on-change-color="changeColor"
@@ -30,7 +30,7 @@
       </transition>
     </div>
   </div>
-</editor-tool-layout>
+</EditorToolLayout>
 </template>
 
 <script>

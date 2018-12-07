@@ -1,12 +1,12 @@
 <template>
-<editor-tool-layout
+<EditorToolLayout
   :name="'text'"
   @on-show="onShow"
   @on-restore="restore"
   @on-save="save"
   @on-global-frame="globalFrame = !globalFrame"
 >
-  <color-picker
+  <ColorPicker
     :colorValue="colorValue"
     :alphaValue="alphaValue"
     @on-change-color="changeColor"
@@ -15,7 +15,7 @@
   <div slot="action">
     <button class="btn-outline-info btn-small" @click="changeText">修改文字</button>
   </div>
-</editor-tool-layout>
+</EditorToolLayout>
 </template>
 
 <script>

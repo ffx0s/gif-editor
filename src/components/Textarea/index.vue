@@ -1,14 +1,15 @@
 <template>
 <transition name="fade">
   <div class="textarea-input item-center" v-show="show">
-    <textarea
-      class="textarea" 
-      placeholder="点击输入文字"
-      :value="value"
-      @input="updateValue($event.target.value)"
-      autofocus
-    >
-    </textarea>
+    <form @submit.prevent="confirm">
+      <input
+        class="textarea" 
+        placeholder="点击输入文字"
+        :value="value"
+        @input="updateValue($event.target.value)"
+        autofocus
+      />
+    </form>
     <div class="footer-actions">
       <button @click.stop="cancle">取消</button>
       <button @click.stop="confirm">确定</button>
@@ -69,6 +70,7 @@ export default {
   background: var(--black);
 }
 .textarea {
+  margin-top: -200px;
   width: 300px;
   height: 200px;
   background: transparent;

@@ -1,15 +1,15 @@
 <template>
 <div class="editor-tools" @click="$store.dispatch('pause')">
-  <scroll-view style="width: 75%" scrollX>
+  <ScrollView style="width: 75%" scrollX>
     <div class="list">
-      <icon-button class="newfile" :icon-class="'icon-new'" @click.native="createNewFile" />
-      <icon-button icon-class="icon-pencil" @click.native="usePencilTool" />
-      <icon-button icon-class="icon-ico-typelayer-ZIpQl" @click.native="useTextTool" />
-      <icon-button :icon-class="pause ? 'icon-play' :'icon-pause'" @click.native.stop="play" />
-      <icon-button icon-class="icon-download" @click.native="createGif" />
+      <IconButton class="newfile" :icon-class="'icon-new'" @click.native="createNewFile" />
+      <IconButton icon-class="icon-pencil" @click.native="usePencilTool" />
+      <IconButton icon-class="icon-ico-typelayer-ZIpQl" @click.native="useTextTool" />
+      <IconButton :icon-class="pause ? 'icon-play' :'icon-pause'" @click.native.stop="play" />
+      <IconButton icon-class="icon-download" @click.native="createGif" />
       <!-- <icon-button icon-class="icon-delete" /> -->
     </div>
-  </scroll-view>
+  </ScrollView>
   <div class="list undo">
     <icon-button icon-class="icon-undo" @click.native="undo" :disabled="disableUndo" />
     <icon-button icon-class="icon-redo" @click.native="redo" :disabled="disableRedo" />

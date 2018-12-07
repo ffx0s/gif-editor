@@ -1,20 +1,20 @@
 <template>
 <transition name="fade">
-<div class="editor-download" v-show="status === 6 || status === 7">
-  <v-progress
-    class="progress"
-    v-show="status === 6"
-    :value="progress"
-    :text="'生成中'"
-  />
-  <transition name="fade">
-    <div class="image-container item-center" v-if="status === 7">
-      <img :src="blobUrl">
-      <p class="info">长按图片进行保存/鼠标右键另存为</p>
-      <button class="btn-outline-info" @click="edit">继续编辑</button>
-    </div>
-  </transition>
-</div>
+  <div class="editor-download" v-show="status === 6 || status === 7">
+    <VProgress
+      class="progress"
+      v-show="status === 6"
+      :value="progress"
+      :text="'生成中'"
+    />
+    <transition name="fade">
+      <div class="image-container item-center" v-if="status === 7">
+        <img :src="blobUrl">
+        <p class="info">长按图片进行保存/鼠标右键另存为</p>
+        <button class="btn-outline-info" @click="edit">继续编辑</button>
+      </div>
+    </transition>
+  </div>
 </transition>
 </template>
 
