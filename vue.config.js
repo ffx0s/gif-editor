@@ -43,14 +43,14 @@ module.exports = {
     ]
   },
 
-  configureWebpack: config => {
-    if (process.env.NODE_ENV === 'production') {
-      config.plugins.push(new BundleAnalyzerPlugin())
-      // mutate config for production...
-    } else {
-      // mutate for development...
-    }
-  },
+  // configureWebpack: config => {
+  //   if (process.env.NODE_ENV === 'production') {
+  //     config.plugins.push(new BundleAnalyzerPlugin())
+  //     // mutate config for production...
+  //   } else {
+  //     // mutate for development...
+  //   }
+  // },
 
   css: {
     extract: false
