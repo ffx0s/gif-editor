@@ -2,8 +2,8 @@
 
 const path = require('path')
 const { assetsDomain } = require('./src/config')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+// .BundleAnalyzerPlugin
 
 const px2remOptions = {
   remUnit: 16,
@@ -20,7 +20,7 @@ module.exports = {
     contentBase: [path.resolve(__dirname, './node_modules/gif.js/dist')],
     proxy: {
       '/app': {
-        target: 'http://127.0.0.1:3001',
+        target: 'https://biaoqing233.com',
         changeOrigin: true
       }
     }

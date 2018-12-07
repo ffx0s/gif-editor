@@ -70,6 +70,8 @@ const actions = {
   load({ commit, state }) {
     if (state.file) {
       commit('file', state.file)
+      commit('progress', { name: 'load', value: 0 })
+      commit('progress', { name: 'parse', value: 0 })
       commit('status', 2)
       editor.gif.load(state.file)
       // https://freshdesign.io/img/inspiration/woveC.gif
