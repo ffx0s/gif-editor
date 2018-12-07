@@ -42,4 +42,4 @@ export function setImg(key) {
   return domain + '/' + key
 }
 
-export const domain = 'http://cloud-static-bq.test.upcdn.net'
+export const domain = 'https://cdn.biaoqing233.com'
