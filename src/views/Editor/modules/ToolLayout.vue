@@ -2,24 +2,24 @@
 <div class="editor-tool-layout" :class="{'show-tool': show}">
   <slot></slot>
   <div class="footer item-center">
-    <icon-button @click.native="$emit('on-restore')" class="close" icon-class="icon-close" />
+    <IconButton @click.native="$emit('on-restore')" class="close" icon-class="icon-close" />
     <div class="item-center" style="width: 100%">
       <div class="action-item item-center">
         <div class="choose-type" @click="showHelp">
           全局
           <i class="iconfont icon-help"></i>
         </div>
-        <input-switch v-model="type" @input="$emit('on-global-frame', type)" />
+        <InputSwitch v-model="type" @input="$emit('on-global-frame', type)" />
       </div>
       <div class="action-item item-center" v-if="enabledRecord">
-        <icon-button class="record" icon-class="icon-undo" @click.native="undo" :disabled="disableUndo" />
-        <icon-button class="record" icon-class="icon-redo" @click.native="redo" :disabled="disableRedo" />
+        <IconButton class="record" icon-class="icon-undo" @click.native="undo" :disabled="disableUndo" />
+        <IconButton class="record" icon-class="icon-redo" @click.native="redo" :disabled="disableRedo" />
       </div>
       <div class="action-item item-center">
         <slot name="action"></slot>
       </div>
     </div>
-    <icon-button @click.native="$emit('on-save')" class="correct" icon-class="icon-ico-correct" />
+    <IconButton @click.native="$emit('on-save')" class="correct" icon-class="icon-ico-correct" />
   </div>
 </div>
 </template>
@@ -112,11 +112,11 @@ export default {
   height: 40px;
   flex-direction: row;
   justify-content: space-between;
-  &>>>i {
+  & >>> i {
     font-size: 18px;
   }
-  &>>>.close,
-  &>>>.correct {
+  & >>> .close,
+  & >>> .correct {
     position: absolute;
     bottom: 0;
     height: 100%;

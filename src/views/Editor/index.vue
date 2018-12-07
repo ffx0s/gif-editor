@@ -1,16 +1,18 @@
 <template>
-<app-view :scroll="false">
+<AppView :scroll="false">
   <div class="editor" @touchmove.prevent>
-    <editor-canvas></editor-canvas>
+    <EditorCanvas />
     <footer :class="{hide: status !== 5}">
-      <editor-play-controller></editor-play-controller>
-      <editor-tools></editor-tools>
-      <editor-text-tool></editor-text-tool>
-      <editor-pencil-tool></editor-pencil-tool>
+      <EditorPlayController />
+      <EditorTools />
+      <EditorTextTool />
+      <EditorPencilTool />
     </footer>
-    <editor-download></editor-download>
+    <EditorDownload />
   </div>
-</app-view>
+  <Side />
+  <SideBtn />
+</AppView>
 </template>
 
 <script>
@@ -24,6 +26,18 @@ import EditorTools from './modules/Tools'
 import EditorTextTool from './modules/TextTool'
 import EditorPencilTool from './modules/PencilTool'
 import EditorDownload from './modules/Download'
+import Side from './modules/Side'
+import SideBtn from './modules/SideBtn'
+
+function load(to) {
+  if (to.query.pic) {
+    store.commit('file', to.query.pic)
+  }
+  // 定时器防止 UI 页面过场卡顿
+  setTimeout(() => {
+    store.dispatch('load')
+  }, 400)
+}
 
 export default {
   computed: {
@@ -32,27 +46,17 @@ export default {
     })
   },
   beforeRouteEnter(to, from, next) {
-    next(vm => {
-      // 定时器防止 UI 页面过场卡顿
-      setTimeout(() => {
-        vm.$store.dispatch('load')
-      }, 400)
+    next(() => {
+      load(to)
+    })
+  },
+  beforeRouteUpdate(to, from, next) {
+    this.leave(next, () => {
+      load(to)
     })
   },
   beforeRouteLeave(to, from, next) {
-    const vm = this
-    if (editor.layer.hasElements()) {
-      vm.$confirm({
-        body: '是否放弃编辑？',
-        confirm() {
-          vm.$store.dispatch('reset')
-          next()
-        }
-      })
-      next(false)
-    } else {
-      next()
-    }
+    this.leave(next)
   },
   methods: {
     editorInit() {
@@ -111,6 +115,23 @@ export default {
           store.commit('status', 4)
         })
     },
+    leave(next, cb) {
+      const vm = this
+      if (editor.layer.hasElements()) {
+        vm.$confirm({
+          body: '是否放弃当前的编辑？',
+          confirm() {
+            vm.$store.dispatch('reset')
+            cb && cb()
+            next()
+          }
+        })
+        next(false)
+      } else {
+        cb && cb()
+        next()
+      }
+    },
     destory() {}
   },
   mounted() {
@@ -122,13 +143,19 @@ export default {
     EditorTools,
     EditorTextTool,
     EditorPencilTool,
-    EditorDownload
+    EditorDownload,
+    Side,
+    SideBtn
   }
 }
 </script>
 
 <style lang="postcss">
 .editor {
+  position: relative;
+  max-width: 750px; /*no*/
+  width: 60%;
+  float: left;
   height: 100%;
   background: var(--black);
   touch-action: none;

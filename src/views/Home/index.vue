@@ -1,15 +1,14 @@
 <template>
-<app-view>
+<AppView>
   <div class="home" @touchmove.prevent>
     <div class="actions item-center">
       <button class="btn-white btn-large btn-block focus making">
         上传制作
         <Upload @on-change="onChange"></Upload>
       </button>
-      <button class="btn-outline-white btn-large btn-block"  @click="$router.push({ name: 'gallery' })">图库浏览</button>
     </div>
   </div>
-</app-view>
+</AppView>
 </template>
 
 <script>

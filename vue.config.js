@@ -17,7 +17,13 @@ module.exports = {
     port: 8080,
     https: false,
     hotOnly: false,
-    contentBase: [path.resolve(__dirname, './node_modules/gif.js/dist')]
+    contentBase: [path.resolve(__dirname, './node_modules/gif.js/dist')],
+    proxy: {
+      '/app': {
+        target: 'http://127.0.0.1:3001',
+        changeOrigin: true
+      }
+    }
   },
 
   vueLoader: {

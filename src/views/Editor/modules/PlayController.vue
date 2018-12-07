@@ -1,7 +1,7 @@
 <template>
 <div class="editor-play-controller">
   <div class="inner">
-    <range
+    <Range
       :value="this.frameIndex + 1"
       :min="1"
       :max="this.frameLength"
@@ -9,11 +9,11 @@
       @on-dragstart="onDragstart"
     >
       <template slot="wrap">
-        <icon-button class="previous" icon-class="icon-previous" @click.native="jump(-1)" :disabled="frameIndex < 1" />
-        <icon-button class="next" icon-class="icon-next" @click.native="jump(1)" :disabled="frameIndex === frameLength - 1" />
+        <IconButton class="previous" icon-class="icon-previous" @click.native="jump(-1)" :disabled="frameIndex < 1" />
+        <IconButton class="next" icon-class="icon-next" @click.native="jump(1)" :disabled="frameIndex === frameLength - 1" />
       </template>
       <template slot="text"><strong>{{frameIndex + 1}}</strong>/{{frameLength}}</template>
-    </range>
+    </Range>
   </div>
 </div>
 </template>
@@ -67,7 +67,7 @@ export default {
     position: absolute;
     top: -16.5px;
   }
-  &>>>.iconfont {
+  & >>> .iconfont {
     font-size: 18px;
   }
   & .previous {

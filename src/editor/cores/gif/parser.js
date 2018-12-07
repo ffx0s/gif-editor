@@ -82,7 +82,6 @@ export default class Parser extends EventEmitter {
       if (data.toString().indexOf('ArrayBuffer') > 0) {
         data = new Uint8Array(data)
       }
-
       that.loadEnd(data, callback)
     }
 

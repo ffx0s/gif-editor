@@ -1,6 +1,6 @@
 <template>
 <div class="upload">
-  <input @change="onChange" class="upload-input" type="file" accept="image/gif">
+  <input @change="onChange" class="upload-input" type="file" accept="image/*">
 </div>
 </template>
 
