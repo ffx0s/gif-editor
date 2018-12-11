@@ -7,7 +7,7 @@
 
 /* 各模块自适应分辨率样式 */
 @media screen and (max-width: 1200px) {
-  .page-view {
+  #app {
     & .side {
       & .col {
         width: 33.333333%;
@@ -17,7 +17,7 @@
 }
 
 @media screen and (max-width: 800px) {
-  .page-view {
+  #app {
     & .editor {
       width: 100%;
       max-width: 100%;
@@ -50,7 +50,7 @@
 }
 
 @media screen and (max-width: 450px) {
-  .page-view {
+  #app {
     & .side {
       & .col {
         width: 33.333333%;

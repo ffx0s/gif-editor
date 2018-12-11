@@ -40,6 +40,7 @@ function load(to) {
 }
 
 export default {
+  name: 'cache-editor',
   computed: {
     ...mapGetters({
       status: 'status'
