@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="page-content" :class="this.scroll ? 'scroll' : 'hidden'">
+  <div class="animated-route-view" :class="this.scroll ? '__scroll' : '__hidden'">
     <slot></slot>
   </div>
   <div class="page-shadow-effect"></div>
@@ -21,15 +21,15 @@ export default {
 </script>
 
 <style lang="postcss">
-.page-content {
+.animated-route-view {
   position: relative;
   height: 100%;
   z-index: 1;
-  &.scroll {
+  &.__scroll {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
   }
-  &.hidden {
+  &.__hidden {
     overflow: hidden;
   }
 }

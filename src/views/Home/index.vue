@@ -15,6 +15,7 @@
 import Upload from '@/components/Upload'
 
 export default {
+  name: 'cache-home',
   methods: {
     onChange() {
       this.$router.push({

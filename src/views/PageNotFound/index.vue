@@ -14,3 +14,10 @@
   background: white;
 }
 </style>
+
+<script>
+export default {
+  name: 'cache-pageNotFound',
+}
+</script>
+

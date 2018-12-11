@@ -7,7 +7,7 @@ import VueLazyload from 'vue-lazyload'
 import * as filters from '@/utils/filters'
 import * as directives from '@/utils/directives'
 
-import AppView from '@/components/View'
+import AppView from '@/components/AnimatedRoute/view'
 import IconButton from '@/components/IconButton'
 import VRow from '@/components/Row'
 import VCol from '@/components/Col'
