@@ -82,6 +82,15 @@ export default {
         store.commit('frameIndex', index)
       })
 
+      editor.gif.on('ready', () => {
+        // 解析结束并且处理完数据后显示第一帧的图片
+        editor.gif.jump(0, 'absolute')
+        // 设置解析结束状态
+        store.commit('status', 5)
+        // 设置总帧数
+        store.commit('frameLength', editor.gif.frames.length)
+      })
+
       editor.gif.parser
         .on('loadProgress', (loaded, total) => {
           store.commit('progress', {
@@ -94,14 +103,6 @@ export default {
             name: 'parse',
             value: Math.ceil(current / total * 100)
           })
-        })
-        .on('parseEnd', () => {
-          // 解析结束后显示第一帧的图片
-          editor.gif.jump(0, 'absolute')
-          // 设置解析结束状态
-          store.commit('status', 5)
-          // 设置总帧数
-          store.commit('frameLength', editor.gif.frames.length)
         })
         .on('loadError', () => {
           vm.$alert({

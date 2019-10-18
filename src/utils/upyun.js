@@ -13,8 +13,8 @@ export function getHeaderSign(policy) {
   })
 }
 
-// 是否为七牛域名上的图片
-export function isCDNImage(src) {
+// 是否为远程图片
+export function isRemoteImage(src) {
   return !(
     src.indexOf('blob:') !== -1 ||
     src.indexOf('http') !== -1 ||
@@ -24,7 +24,7 @@ export function isCDNImage(src) {
 
 // 获取图片信息
 export function imageInfo(key) {
-  if (!isCDNImage(key)) return {}
+  if (!isRemoteImage(key)) return {}
   const info = key.split('.')[0].split('_')
   return {
     name: info[0],
@@ -35,7 +35,7 @@ export function imageInfo(key) {
 }
 
 export function setImg(key) {
-  if (!isCDNImage(key)) return key
+  if (!isRemoteImage(key)) return key
 
   // ...
 

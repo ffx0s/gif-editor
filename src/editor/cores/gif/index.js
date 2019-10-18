@@ -1,5 +1,6 @@
 import EventEmitter from '@/plugins/eventEmitter'
 import Parser from './parser'
+import { toImageObj } from './utils'
 
 export default class Gif extends EventEmitter {
   constructor() {
@@ -22,6 +23,7 @@ export default class Gif extends EventEmitter {
     const that = this
 
     that.create()
+
     ;['parseHeader', 'parseImg', 'parseGCExt', 'parseEnd'].forEach(name => {
       that.parser.on(name, data => {
         that[name](data)
@@ -106,12 +108,14 @@ export default class Gif extends EventEmitter {
     this.emit('frameIndex', index)
   }
 
-  parseHeader(header) {
-    const that = this
+  setCanvasSize (width, height) {
+    this.canvas.width = this.tmpCanvas.width = width
+    this.canvas.height = this.tmpCanvas.height = height
+  }
 
-    that.canvas.width = that.tmpCanvas.width = header.width
-    that.canvas.height = that.tmpCanvas.height = header.height
-    that.header = header
+  parseHeader(header) {
+    this.setCanvasSize(header.width, header.height)
+    this.header = header
   }
 
   parseImg(img) {
@@ -207,12 +211,31 @@ export default class Gif extends EventEmitter {
     this.disposalMethod = gce.disposalMethod
   }
 
-  parseEnd() {
+  async parseEnd() {
+    if (!this.parser.isGif) {
+      await this.notGif()
+    }
     this.pushFrame()
     this.clear()
     this.header = null
     this.lastImg = null
     this.parser.reset()
+    this.emit('ready')
+  }
+
+  notGif () {
+    return toImageObj(this.parser.target)
+      .then(image => {
+        this.header = {
+          width: image.width,
+          height: image.height
+        }
+        this.delay = 0
+        this.setCanvasSize(image.width, image.height)
+        this.frame = this.tmpCanvas.getContext('2d')
+        this.frame.drawImage(image, 0, 0)
+      })
+      .catch(error => throw error)
   }
 
   drawFrame(index) {
@@ -244,6 +267,8 @@ export default class Gif extends EventEmitter {
   }
 
   play(loop) {
+    if (this.frames.length <= 1) return
+
     loop = loop !== false
 
     this.pause()

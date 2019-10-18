@@ -119,6 +119,7 @@ export default {
     display: block;
     border-radius: 50%;
     background-color: var(--black);
+    box-shadow: 0px 0px 2px 1px #9e9e9e;
   }
   & .huge {
     width: 16px;
