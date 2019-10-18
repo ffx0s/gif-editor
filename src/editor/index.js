@@ -21,8 +21,8 @@ export default class Editor {
     that.gif.init()
 
     that.gif.on('frameIndex', that.layer.redraw.bind(that.layer))
-    that.gif.parser.once('parseEnd', that.render.bind(that))
-    that.gif.parser.on('parseEnd', () => {
+    that.gif.once('ready', that.render.bind(that))
+    that.gif.on('ready', () => {
       that.layer.setSize(that.gif.canvas.width, that.gif.canvas.height)
     })
 
@@ -38,7 +38,7 @@ export default class Editor {
     this.gif.destory(this.el)
     this.layer.destory(this.el)
   }
-  createGif() {
+  build() {
     const that = this
     const framesLength = that.gif.frames.length
     let canvas = document.createElement('canvas')
@@ -54,6 +54,7 @@ export default class Editor {
     }
     if (!that.builder) {
       that.builder = new Builder(options)
+      
       that.builder.on('finished', blob => {
         that.gif.emit('finished', URL.createObjectURL(blob))
         that.builder.frames.length = 0

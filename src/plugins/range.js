@@ -32,7 +32,7 @@ export default class Range {
   calculate() {
     const that = this
     const count = (that.max - that.min) / that.step
-    that.px = that.width / count
+    that.px = count === 0 ? 0 : that.width / count
     that.count = count
   }
 

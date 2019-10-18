@@ -6,7 +6,7 @@
       <IconButton icon-class="icon-pencil" @click.native="usePencilTool" />
       <IconButton icon-class="icon-ico-typelayer-ZIpQl" @click.native="useTextTool" />
       <IconButton :icon-class="pause ? 'icon-play' :'icon-pause'" @click.native.stop="play" />
-      <IconButton icon-class="icon-download" @click.native="createGif" />
+      <IconButton icon-class="icon-download" @click.native="build" />
       <!-- <icon-button icon-class="icon-delete" /> -->
     </div>
   </ScrollView>
@@ -65,8 +65,8 @@ export default {
         }
       })
     },
-    createGif() {
-      editor.createGif()
+    build() {
+      editor.build()
       this.$store.commit('status', 6)
     }
   },

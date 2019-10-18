@@ -13,28 +13,29 @@ export default class Parser extends EventEmitter {
     super()
 
     this.stream = null
+    this.target = null
+    this.isGif = false
   }
 
   reset() {
     this.stream = null
+    this.target = null
   }
 
-  load(src, callback) {
+  load(target, callback) {
     const that = this
+
+    that.target = target
 
     if (
       window.FileReader &&
-      (src instanceof window.Blob || src instanceof window.File)
+      (target instanceof window.Blob || target instanceof window.File)
     ) {
-      if (src.type !== 'image/gif') {
-        that.emit('parseError')
-        return
-      }
       fileToArrayBuffer(
-        src,
+        target,
         arrayBuffer => {
           const data = new Uint8Array(arrayBuffer)
-          const size = src.size
+          const size = target.size
 
           that.emit('loadProgress', size, size)
           that.loadEnd(data, callback)
@@ -49,7 +50,7 @@ export default class Parser extends EventEmitter {
     that.req = new window.XMLHttpRequest()
 
     // new browsers (XMLHttpRequest2-compliant)
-    that.req.open('GET', src, true)
+    that.req.open('GET', target, true)
 
     if ('overrideMimeType' in that.req) {
       that.req.overrideMimeType('text/plain; charset=x-user-defined')
@@ -125,9 +126,12 @@ export default class Parser extends EventEmitter {
   parse() {
     try {
       this.parseHeader()
-      setTimeout(() => {
-        this.parseBlock()
-      }, 0)
+
+      if (this.isGif) {
+        setTimeout(() => {
+          this.parseBlock()
+        }, 0)
+      }
     } catch (error) {
       this.emit('parseError', error)
     }
@@ -156,7 +160,15 @@ export default class Parser extends EventEmitter {
     var hdr = {}
     hdr.sig = this.stream.read(3)
     hdr.ver = this.stream.read(3)
-    if (hdr.sig !== 'GIF') throw new Error('Not a GIF file.') // XXX: This should probably be handled more nicely.
+
+    this.isGif = hdr.sig === 'GIF'
+    
+    if (!this.isGif) {
+      // throw new Error('Not a GIF file.') // XXX: This should probably be handled more nicely.
+      this.emit('parseEnd')
+      return
+    }
+
     hdr.width = this.stream.readUnsigned()
     hdr.height = this.stream.readUnsigned()
 

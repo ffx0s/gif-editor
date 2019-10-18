@@ -116,3 +116,26 @@ export function fileToArrayBuffer(file, callback, errorCallback) {
 
   fileReader.readAsArrayBuffer(file)
 }
+
+export const isBase64Image = src => src.indexOf(';base64,') > 0
+
+export function toImageObj (target) {
+  const image = new Image()
+
+  if (target instanceof Blob || target instanceof File) {
+    target = URL.createObjectURL(target)
+  }
+
+  if (!isBase64Image(target)) {
+    image.crossOrigin = '*'
+  }
+
+  return new Promise((resolve, reject) => {
+    image.onload = () => {
+      resolve(image)
+      URL.revokeObjectURL(target)
+    }
+    image.onerror = reject
+    image.src = target
+  })
+}
