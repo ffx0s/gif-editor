@@ -29,7 +29,7 @@
     "postcss-px2rem": "^0.3.0",
     "postcss-write-svg": "jonathantneal/postcss-write-svg",
     "vue-template-compiler": "^2.5.13",
-    "webpack-bundle-analyzer": "^2.13.1"
+    "webpack-bundle-analyzer": "^3.3.2"
   },
   "babel": {
     "presets": [
