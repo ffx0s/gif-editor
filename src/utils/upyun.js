@@ -1,17 +1,6 @@
-import request from './request'
 import { isBase64Image } from './shared'
 
 export const bucketName = 'cloud-static-bq'
-
-export function getHeaderSign(policy) {
-  return request({
-    url: '/upyun/sign',
-    params: {
-      policy,
-      method: 'POST'
-    }
-  })
-}
 
 // 是否为远程图片
 export function isRemoteImage(src) {
