@@ -1,10 +1,11 @@
 import axios from 'axios'
+import { isDev } from '../config'
 
 // create an axios instance
 const service = axios.create({
   withCredentials: true,
   // timeout: 10000,
-  baseURL: '/app'
+  baseURL: isDev ? '/app' : 'https://biaoqing233.com/app'
 })
 
 // request interceptor
