@@ -1,5 +1,7 @@
 import Handler from '@/plugins/handler'
 
+const hasOwnProperty = Object.prototype.hasOwnProperty
+
 export class Border {
   constructor() {
     const that = this
@@ -48,7 +50,7 @@ export class Border {
   setStyle() {
     let styles = 'display: block;'
     for (let prop in this.styles) {
-      if (this.styles.hasOwnProperty(prop)) {
+      if (hasOwnProperty.call(this.styles, prop)) {
         styles += `${prop}:${this.styles[prop]}px;`
       }
     }

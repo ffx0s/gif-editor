@@ -235,7 +235,9 @@ export default class Gif extends EventEmitter {
         this.frame = this.tmpCanvas.getContext('2d')
         this.frame.drawImage(image, 0, 0)
       })
-      .catch(error => throw error)
+      .catch(error => {
+        throw error
+      })
   }
 
   drawFrame(index) {
