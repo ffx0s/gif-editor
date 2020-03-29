@@ -44,7 +44,7 @@ export default {
       type: 'latest',
       query: {
         offset: 1,
-        limit: 20
+        limit: 30
       },
       loading: false,
       finished: false,

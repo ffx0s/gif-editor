@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style lang="postcss">
-@import "./assets/css/app";
+@import "./assets/css/app.css";
 
 html,
 body {

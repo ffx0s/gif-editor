@@ -80,6 +80,7 @@ try {
   const opts = Object.defineProperty({}, 'passive', {
     get: function() {
       supportsPassive = true
+      return supportsPassive
     }
   })
   window.addEventListener('testPassive', null, opts)

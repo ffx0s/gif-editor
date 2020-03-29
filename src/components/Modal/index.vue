@@ -1,45 +1,66 @@
 <template>
-<transition name="modal">
-  <div class="modal-mask" @touchmove.prevent>
-    <div class="modal-wrapper">
-      <div class="modal-container">
+  <transition name="v-modal">
+    <div
+      class="v-modal"
+      :class="{ 'v-modal--overlay': overlay }"
+      v-show="value"
+      @touchmove.prevent
+    >
+      <div class="v-modal__wrapper" @click.self="overlayClickHandler">
+        <div class="v-modal__container">
+          <div class="v-modal__header" v-if="title || $slots.header">
+            <slot name="header">
+              <strong class="v-modal__title">{{ title }}</strong>
+            </slot>
+          </div>
 
-        <div class="modal-header">
-          <slot name="header"></slot>
-        </div>
+          <div class="v-modal__content">
+            <slot>
+              <template v-if="content">{{ content }}</template>
+              <div v-else-if="html" v-html="html"></div>
+            </slot>
+          </div>
 
-        <div class="modal-body">
-          <slot name="body"></slot>
-        </div>
-
-        <div class="modal-footer">
-          <slot name="footer">
-            <button
-              v-show="showConfirmButton"
-              class="modal-default-button btn-info"
-              @click="$emit('confirm')"
-            >
-              确定
-            </button>
-            <button
-              v-show="showCancelButton"
-              class="modal-default-button btn-white"
-              @click="$emit('cancel')"
-            >
-              取消
-            </button>
-          </slot>
+          <div class="v-modal__footer">
+            <slot name="footer">
+              <button
+                v-if="showCancelButton"
+                @click="cancelHandler"
+                class="btn-small"
+              >
+                {{ cancelText }}
+              </button>
+              <button
+                v-if="showConfirmButton"
+                @click="confirmHandler"
+                class="btn-info"
+              >
+                {{ confirmText }}
+              </button>
+            </slot>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</transition>
+  </transition>
 </template>
 
 <script>
 export default {
   name: 'Modal',
   props: {
+    value: {
+      type: Boolean,
+      default: false
+    },
+    confirmText: {
+      type: String,
+      default: '确定'
+    },
+    cancelText: {
+      type: String,
+      default: '取消'
+    },
     showConfirmButton: {
       type: Boolean,
       default: true
@@ -47,70 +68,120 @@ export default {
     showCancelButton: {
       type: Boolean,
       default: false
+    },
+    overlay: {
+      type: Boolean,
+      default: true
+    },
+    overlayClick: {
+      type: Boolean,
+      default: true
+    },
+    title: {
+      type: String,
+      default: ''
+    },
+    content: {
+      type: String,
+      default: ''
+    },
+    html: {
+      type: String,
+      default: ''
+    },
+    destroyOnClose: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data() {
+    return {
+      cancelLoading: false,
+      confirmLoading: false
+    }
+  },
+  methods: {
+    done() {
+      this.$emit('input', false)
+      this.cancelLoading = false
+      this.confirmLoading = false
+    },
+    overlayClickHandler() {
+      if (this.overlayClick) {
+        this.$emit('close')
+        this.$emit('input', false)
+      }
+    },
+    cancelHandler() {
+      this.$emit('cancel', this)
+    },
+    confirmHandler() {
+      this.$emit('confirm', this)
     }
   }
 }
 </script>
 
-
-<style lang="postcss" scoped>
-.modal-mask {
+<style lang="postcss">
+.v-modal {
   position: fixed;
-  z-index: 9998;
+  z-index: 99998;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
   display: table;
   transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
-.modal-wrapper {
+.v-modal--overlay {
+  pointer-events: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.v-modal__wrapper {
   display: table-cell;
   vertical-align: middle;
 }
 
-.modal-container {
+.v-modal__container {
   width: 70%;
-  max-width: 500px; /*no*/
+  max-width: 500px;
   margin: 0px auto;
-  padding: 20px 30px; /*no*/
+  padding: 20px;
   background-color: #fff;
-  border-radius: 2px; /*no*/
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33); /*no*/
+  border-radius: 2px;
   transition: all 0.3s ease;
+  pointer-events: auto;
 }
 
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
+.v-modal__header + .v-modal__content {
+  color: var(--textRegular);
 }
 
-.modal-body {
-  margin: 20px 0; /*no*/
-  line-height: 24px; /*no*/
+.v-modal__content {
+  margin: 20px 0;
+  font-size: 16px;
+  line-height: 24px;
 }
 
-.modal-footer {
-  padding-bottom: 34px; /*no*/
+.v-modal__title {
+  font-size: 17px;
 }
 
-.modal-default-button {
-  float: right;
-  margin-left: 15px;
+.v-modal__footer {
+  text-align: right;
 }
 
-.modal-enter {
+.v-modal-enter,
+.v-modal-leave-active {
   opacity: 0;
 }
-
-.modal-leave-active {
-  opacity: 0;
-}
-
-.modal-enter .modal-container,
-.modal-leave-active .modal-container {
+.v-modal-enter .v-modal__container {
   transform: scale(1.1);
+}
+.v-modal-leave-active .v-modal__container {
+  transform: scale(0.8);
 }
 </style>

@@ -2,7 +2,7 @@
 <AppView>
   <div class="home" @touchmove.prevent>
     <div class="actions item-center">
-      <button class="btn-white btn-large btn-block focus making">
+      <button class="btn-white btn-large btn-block making">
         上传制作
         <Upload @on-change="onChange"></Upload>
       </button>

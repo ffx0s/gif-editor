@@ -1,8 +1,9 @@
-@import "./common/reset";
-@import "./common/color";
-@import "./common/1px";
-@import "./common/btn";
-@import "./common/util";
+@import "./vars.css";
+@import "./common/reset.css";
+@import "./common/color.css";
+@import "./common/1px.css";
+@import "./common/btn.css";
+@import "./common/util.css";
 @import "../font/css/fontello.css";
 
 /* 各模块自适应分辨率样式 */

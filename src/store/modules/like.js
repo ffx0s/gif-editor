@@ -20,7 +20,7 @@ const mutations = {
     try {
       localStorage[LOCAL_LIKE_KEY] = JSON.stringify(state.data)
     } catch (err) {
-      throw err
+      throw new Error(err.message)
     }
   },
   get(state) {

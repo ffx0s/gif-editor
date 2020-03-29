@@ -58,10 +58,11 @@ export default {
     createNewFile() {
       const vm = this
 
-      vm.$confirm({
-        body: '是否放弃当前编辑，上传新的图片？',
-        confirm() {
+      vm.$modal({
+        content: '是否放弃当前编辑，上传新的图片？',
+        confirm(instance) {
           vm.$store.dispatch('reset')
+          instance.done()
         }
       })
     },

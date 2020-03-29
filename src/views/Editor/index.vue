@@ -120,9 +120,10 @@ export default {
     leave(next, cb) {
       const vm = this
       if (editor.layer.hasElements()) {
-        vm.$confirm({
-          body: '是否放弃当前的编辑？',
-          confirm() {
+        vm.$modal({
+          content: '是否放弃当前的编辑？',
+          confirm(instance) {
+            instance.done()
             vm.$store.dispatch('reset')
             cb && cb()
             next()
