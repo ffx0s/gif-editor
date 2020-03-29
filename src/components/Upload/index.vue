@@ -10,11 +10,11 @@ export default {
     check(file, maxSize = 3000 * 1024) {
       const vm = this
       if (file.size > maxSize) {
-        vm.$alert({ body: `请上传小于 ${maxSize / 1024 / 1000}M 的图片。` })
+        vm.$modal(`请上传小于 ${maxSize / 1024 / 1000}M 的图片。`)
         return false
       }
       // if (file.type !== 'image/gif') {
-      //   vm.$alert({ body: '仅支持 GIF 图。' })
+      //   vm.$modal('仅支持 GIF 图。')
       //   return false
       // }
       return true

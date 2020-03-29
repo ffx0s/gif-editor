@@ -105,15 +105,11 @@ export default {
           })
         })
         .on('loadError', () => {
-          vm.$alert({
-            body: '加载失败，请重试或更换图片。'
-          })
+          vm.$modal('加载失败，请重试或更换图片。')
           store.commit('status', 3)
         })
         .on('parseError', () => {
-          vm.$alert({
-            body: '解析失败，请重试或更换图片。'
-          })
+          vm.$modal('解析失败，请重试或更换图片。')
           store.commit('status', 4)
         })
     },

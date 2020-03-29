@@ -72,9 +72,7 @@ export default {
   },
   methods: {
     showHelp() {
-      this.$alert({
-        body: '全局激活时，所有的帧都会应用当前编辑操作。'
-      })
+      this.$modal('全局激活时，所有的帧都会应用当前编辑操作。')
     },
     undo() {
       editor.layer.history.undo(editor.layer)
