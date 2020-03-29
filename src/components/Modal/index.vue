@@ -26,10 +26,11 @@
               <button
                 v-if="showCancelButton"
                 @click="cancelHandler"
-                class="btn-small"
+                class="btn-white"
               >
                 {{ cancelText }}
               </button>
+              &#12288;
               <button
                 v-if="showConfirmButton"
                 @click="confirmHandler"
