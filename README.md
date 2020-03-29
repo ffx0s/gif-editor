@@ -6,8 +6,8 @@
 
 ## Dev
 1. `cd gif-editor`  
-2. `npm install`
-3. `npm run serve`  
+2. `yarn install`
+3. `yarn serve`
 
 ## Build
-`npm run build`
+`yarn build`
