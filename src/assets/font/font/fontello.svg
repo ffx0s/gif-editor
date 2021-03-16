@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg">
-<metadata>Copyright (C) 2018 by original authors @ fontello.com</metadata>
+<metadata>Copyright (C) 2021 by original authors @ fontello.com</metadata>
 <defs>
 <font id="fontello" horiz-adv-x="1000" >
 <font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
@@ -53,6 +53,8 @@
 <glyph glyph-name="previous" unicode="&#xe816;" d="M317 351c0-27 12-52 34-70l418-342c18-16 41-23 65-23 15 0 31 3 45 10 33 15 54 47 54 82v684c0 35-21 66-54 82-36 17-80 12-110-13l-418-341c-21-18-34-43-34-69z m142 0l352 287v-576l-352 289z m-330 432c34 0 62-28 62-62v-742c0-34-28-62-62-62s-63 28-63 62v742c0 34 28 62 63 62z" horiz-adv-x="1000" />
 
 <glyph glyph-name="undo" unicode="&#xe817;" d="M74 397l288-288c19-19 52-5 52 22v171c197 8 336-58 490-331 8-14 30-7 29 9-29 542-442 558-519 557v170c0 26-33 40-52 21l-288-288c-12-12-12-31 0-43z" horiz-adv-x="1000" />
+
+<glyph glyph-name="home-1" unicode="&#xe819;" d="M888 336q16-16 11-27t-27-11l-84 0 0-310q0-14-1-21t-8-13-23-6l-204 0 0 310-204 0 0-310-194 0q-28 0-35 10t-7 30l0 310-84 0q-22 0-27 11t11 27l400 402q16 16 38 16t38-16z" horiz-adv-x="900" />
 
 <glyph glyph-name="pencil" unicode="&#xeb89;" d="M274-7l51 51-131 131-51-51 0-60 71 0 0-71 60 0z m292 518q0 12-12 12-6 0-10-4l-302-302q-4-4-4-10 0-12 12-12 6 0 10 4l302 302q4 4 4 10z m-30 107l232-232-464-465-233 0 0 233z m381-54q0-29-21-50l-92-93-233 233 93 92q20 21 50 21 30 0 51-21l131-131q21-22 21-51z" horiz-adv-x="1000" />
 
