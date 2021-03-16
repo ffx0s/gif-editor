@@ -3,7 +3,7 @@ import Gif from './cores/gif'
 import Layer from './cores/layer'
 import History from './cores/history'
 import * as Actions from './cores/mainActions'
-import { isProduction } from '@/config'
+import { isProduction, assetsDomain } from '@/config'
 import { noop, firstToUpperCase } from '@/utils/shared'
 
 export default class Editor {
@@ -49,8 +49,7 @@ export default class Editor {
     }
 
     if (isProduction) {
-      // options.workerScript = assetsDomain + 'gif.worker.js'
-      options.workerScript = 'https://gif.webfed.cn/gif.worker.js'
+      options.workerScript = assetsDomain + 'gif.worker.js'
     }
     if (!that.builder) {
       that.builder = new Builder(options)
