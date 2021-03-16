@@ -2,10 +2,11 @@
 <div class="side" :class="{'expand': sideStatus}">
   <div class="row-between side-header">
     <IconButton class="back" icon-class="icon-undo" @click.native="$store.commit('side/toggle')" />
-    <form class="search" @submit.prevent="load(true)">
-      <input class="search-input" type="text" v-model="keywords" placeholder="搜索表情包，例如：蘑菇头">
+    <form action="" class="search" @submit.prevent="load(true)">
+      <input ref="input" class="search-input" type="search" v-model="keywords" placeholder="搜索表情包，例如：蘑菇头">
       <IconButton icon-class="icon-search" @click.native="load(true)" />
     </form>
+    <IconButton class="home" icon-class="icon-home-1" @click.native="linkTo('https://biaoqing233.com')" />
   </div>
   <ScrollView ref="scroller" class="list">
     <list v-model="loading" :finished="finished" @load="load">
@@ -43,8 +44,8 @@ export default {
       keywords: '',
       type: 'latest',
       query: {
-        offset: 1,
-        limit: 30
+        page: 1,
+        limit: 40
       },
       loading: false,
       finished: false,
@@ -66,13 +67,16 @@ export default {
       const keywords = this.keywords.trim()
       if (clear) {
         this.$refs.scroller.$el.scrollTop = 0
-        this.query.offset = 1
+        this.query.page = 1
       }
       if (keywords) {
         this.getPictures(search(keywords, this.query), clear)
       } else {
         this.getPictures(pictures(this.type, this.query), clear)
       }
+      setTimeout(() => {
+        this.$refs.input.blur()
+      })
     },
     getPictures(request, clear) {
       if (this.loading) return false
@@ -82,7 +86,7 @@ export default {
           this.empty = total === 0
           this.finished = !this.empty && page === pages
           this.pictures = clear ? pictures : this.pictures.concat(pictures)
-          this.query.offset += 1
+          this.query.page += 1
           this.loading = false
         })
         .catch(() => {
@@ -92,6 +96,9 @@ export default {
     clickTag(name) {
       this.keywords = name
       this.load(true)
+    },
+    linkTo (href) {
+      location.href = href
     }
   }
 }
@@ -109,6 +116,7 @@ export default {
   & .search {
     position: relative;
     flex: 1;
+    margin: 0 5px;
     & .icon-btn {
       position: absolute;
       right: 0;
@@ -125,11 +133,12 @@ export default {
     font-size: 14px; /*no*/
     background: #191919;
     border: none;
-    border-radius: 2px;
+    border-radius: 50px;
     color: white;
     box-sizing: border-box;
     border: 1px solid var(--gray); /*no*/
     transition: 0.3s background;
+    appearance: none;
     &:focus {
       background-color: white;
       border-color: transparent;
@@ -161,8 +170,10 @@ export default {
     color: white;
   }
 
+  & .home {
+    font-size: 20px;
+  }
   & .back {
-    margin-right: 10px;
     display: none;
     font-size: 20px; /*no*/
   }
@@ -179,7 +190,7 @@ export default {
     text-align: center;
     border-radius: 50%;
     color: white;
-    background-color: var(--blue);
+    background-color: var(--orange);
     box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.3); /*no*/
     z-index: 2;
     transform: translateZ(0);

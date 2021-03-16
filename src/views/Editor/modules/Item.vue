@@ -75,6 +75,7 @@ export default {
   margin-bottom: 10px; /*no*/
   overflow: hidden;
   background-color: white;
+  cursor: pointer;
   & img {
     position: absolute;
     top: 0;

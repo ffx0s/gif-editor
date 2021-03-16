@@ -37,3 +37,7 @@
 .red-bg {
   background-color: var(--red);
 }
+
+.orange {
+  color: var(--orange);
+}

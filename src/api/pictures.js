@@ -18,7 +18,7 @@ export function pictures(type, params) {
 
 export function like(id, status) {
   return request({
-    url: `/like/${id}/${status}`,
+    url: `/like/picture/${id}/${status}`,
     method: 'post'
   })
 }

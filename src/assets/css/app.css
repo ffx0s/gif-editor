@@ -39,6 +39,7 @@
       & .col {
         width: 25%;
       }
+      & .home,
       & .back {
         display: block;
       }
